@@ -1,0 +1,42 @@
+@import "./breakpoints.scss";
+@import "./variables.scss";
+
+.title-list {
+  color: $blue;
+  margin-top: 90px;
+  margin-left: 40px;
+  display: inline-block;
+
+  @include sm {
+    font-size: 25px;
+    margin-left: 10px;
+  }
+}
+.icon {
+  font-size: 40px;
+  cursor: pointer;
+  margin-right: 30px;
+  position: fixed;
+  top: 1;
+  transform: translateY(-80%);
+  right: 0;
+  z-index: 5000;
+  background-color: rgb(24, 215, 215);
+  border-radius: 50px;
+  @include sm {
+    margin-right: 5px;
+  }
+  
+}
+
+.list {
+  padding: 0 100px 120px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+
+  @include xl {
+    padding: 0 20px 120px;
+  }
+}

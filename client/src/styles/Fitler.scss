@@ -1,0 +1,62 @@
+@import "./breakpoints.scss";
+@import "./variables.scss";
+
+.filter-form {
+  position: absolute;
+  right: 5px;
+  top: 60px;
+  z-index: 500;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Spacing between filter groups */
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: rgb(154, 156, 158);
+  max-width: 700px;
+  max-height: 70vh;
+  margin-bottom: 20px;
+  box-shadow: #222;
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    // margin-bottom: 0.2rem;
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      flex: 0 0 20%; /* Allocate space for labels */
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    select,
+    input[type="number"] {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+  }
+
+  button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: #222;
+    }
+  }
+}

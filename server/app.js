@@ -1,0 +1,40 @@
+const express = require("express");
+const app = express();
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(cors({ origin: "http://localhost:3000" , credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.static("public"));
+
+app.use("/test", (req, res) => {
+  res.send("Hello world!");
+});
+
+//config
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({
+    path: "./config/.env",
+  });
+}
+
+//import Routes
+const auth = require("./controller/auth");
+const listing = require("./controller/listing");
+const booking = require("./controller/booking");
+const user = require("./controller/user");
+
+app.use("/api/v2/auth", auth);
+app.use("/api/v2/listing", listing);
+app.use("/api/v2/booking", booking);
+app.use("/api/v2/user", user);
+
+app.use("/test", (req, res) => {
+  res.send("Hello world!");
+});
+
+module.exports = app;
