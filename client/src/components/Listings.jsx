@@ -20,7 +20,8 @@ const Listings = () => {
       const response = await axios.get(
         selectedCategory !== "All"
           ? `${server}/listing?category=${selectedCategory}`
-          : `${server}/listing`
+          : `${server}/listing`,
+        { headers: { "Content-Type": "application/json" } }
       );
       const data = await response.data;
       dispatch(setListings({ listings: data }));
