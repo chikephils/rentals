@@ -8,7 +8,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(
   cors({
-    origin: "https://rentals-blond.vercel.app/",
+    origin: "https://chireva-rentals.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
   })
