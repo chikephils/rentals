@@ -5,13 +5,13 @@ import Categories from "../components/Categories";
 import Listings from "../components/Listings";
 import Footer from "../components/Footer";
 
-const HomePage = () => {
+const HomePage = ({ loading }) => {
   return (
     <>
       <Navbar />
       <Slide />
       <Categories />
-      <Listings />
+      <Listings loading={loading} />
       <Footer />
     </>
   );

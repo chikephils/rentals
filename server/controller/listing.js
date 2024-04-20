@@ -66,20 +66,13 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
-  const qCategory = req.query.category;
-
+router.get("/get-listings", async (req, res) => {
   try {
-    let listings;
-    if (qCategory) {
-      listings = await Listing.find({ category: qCategory }).populate(
-        "creator"
-      );
-    } else {
-      listings = await Listing.find().populate("creator");
-    }
-
-    res.status(200).json(listings);
+    const listings = await Listing.find({});
+    res.status(201).json({
+      success: true,
+      listings,
+    });
   } catch (err) {
     res
       .status(404)

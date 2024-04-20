@@ -3,37 +3,23 @@ import { categories } from "../Data";
 import "../styles/Listings.scss";
 import ListingCard from "./ListingCard";
 import Loader from "./Loader";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { server } from "../server";
-import { setListings } from "../redux/state";
+import { useSelector } from "react-redux";
 
-const Listings = () => {
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+const Listings = ({ loading }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const listings = useSelector((state) => state.listings);
-
-  const getFeedListings = async () => {
-    try {
-      const response = await axios.get(
-        selectedCategory !== "All"
-          ? `${server}/listing?category=${selectedCategory}`
-          : `${server}/listing`,
-        { headers: { "Content-Type": "application/json" } }
-      );
-      const data = await response.data;
-      dispatch(setListings({ listings: data }));
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const listings = useSelector((state) => state?.listings);
+  const [filteredListings, setFilteredListings] = useState([]);
 
   useEffect(() => {
-    getFeedListings();
-  }, [selectedCategory]);
+    if (selectedCategory === "All") {
+      setFilteredListings(listings);
+    } else {
+      const filtered = listings.filter(
+        (listing) => listing.category === selectedCategory
+      );
+      setFilteredListings(filtered);
+    }
+  }, [selectedCategory, listings]);
 
   return (
     <>
@@ -56,35 +42,39 @@ const Listings = () => {
         <Loader />
       ) : (
         <div className="listings">
-          {listings?.map(
-            (
-              {
-                _id,
-                creator,
-                listingPhotoPaths,
-                city,
-                localGovt,
-                state,
-                category,
-                type,
-                price,
-                booking = false,
-              },
-              index
-            ) => (
-              <ListingCard
-                key={index}
-                listingId={_id}
-                creator={creator}
-                listingPhotoPaths={listingPhotoPaths}
-                city={city}
-                localGovt={localGovt}
-                state={state}
-                category={category}
-                type={type}
-                price={price}
-                booking={booking}
-              />
+          {filteredListings.length === 0 ? (
+            <p className="title-list">No Listings Found</p>
+          ) : (
+            filteredListings?.map(
+              (
+                {
+                  _id,
+                  creator,
+                  listingPhotoPaths,
+                  city,
+                  localGovt,
+                  state,
+                  category,
+                  type,
+                  price,
+                  booking = false,
+                },
+                index
+              ) => (
+                <ListingCard
+                  key={index}
+                  listingId={_id}
+                  creator={creator}
+                  listingPhotoPaths={listingPhotoPaths}
+                  city={city}
+                  localGovt={localGovt}
+                  state={state}
+                  category={category}
+                  type={type}
+                  price={price}
+                  booking={booking}
+                />
+              )
             )
           )}
         </div>

@@ -9,11 +9,11 @@ $darkgrey: #969393;
 }
 
 @mixin buttonStyle {
-  padding: 10px 15px;
+  padding: 10px 10px;
   background-color: $pinkred;
   border: none;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 400;
   cursor: pointer;
   transition: 0.3s ease;
   color: white;

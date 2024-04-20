@@ -6,10 +6,10 @@ import "../styles/List.scss";
 import { IoFilterCircle } from "react-icons/io5";
 import Filter from "../components/Filter";
 
-const ListingPage = () => {
+const ListingPage = ({ loading }) => {
   const [open, setisOpen] = useState(false);
 
-  const listings = useSelector((state) => state.listings);
+  const listings = useSelector((state) => state?.listings);
   const [filteredListings, setFilteredListings] = useState(listings);
 
   const handleFilterSubmit = (filterParams) => {
@@ -54,32 +54,36 @@ const ListingPage = () => {
       </div>
 
       <div className="list">
-        {filteredListings.map(
-          ({
-            _id,
-            creator,
-            listingPhotoPaths,
-            city,
-            localGovt,
-            state,
-            category,
-            type,
-            price,
-            booking = false,
-          }) => (
-            <ListingCard
-              key={_id}
-              listingId={_id}
-              creator={creator}
-              listingPhotoPaths={listingPhotoPaths}
-              city={city}
-              localGovt={localGovt}
-              state={state}
-              category={category}
-              type={type}
-              price={price}
-              booking={booking}
-            />
+        {filteredListings.length === 0 ? (
+          <p className="title-list">No Listings Found</p>
+        ) : (
+          filteredListings.map(
+            ({
+              _id,
+              creator,
+              listingPhotoPaths,
+              city,
+              localGovt,
+              state,
+              category,
+              type,
+              price,
+              booking = false,
+            }) => (
+              <ListingCard
+                key={_id}
+                listingId={_id}
+                creator={creator}
+                listingPhotoPaths={listingPhotoPaths}
+                city={city}
+                localGovt={localGovt}
+                state={state}
+                category={category}
+                type={type}
+                price={price}
+                booking={booking}
+              />
+            )
           )
         )}
       </div>
