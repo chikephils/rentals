@@ -117,7 +117,8 @@ const CreateListing = () => {
 
       const response = await axios.post(
         `${server}/listing/create`,
-        listingForm
+        listingForm,
+        { withCredentials: true }
       );
       if (response.status >= 200 && response.status < 300) {
         navigate("/");
