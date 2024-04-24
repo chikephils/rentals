@@ -43,6 +43,7 @@ const ListingSchema = new mongoose.Schema(
       default: [],
     },
     listingPhotoPaths: [{ type: String }],
+    
     title: {
       type: String,
       required: true,
