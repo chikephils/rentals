@@ -24,8 +24,6 @@ const CreateListing = () => {
   const creatorId = useSelector((state) => state.user._id);
   const navigate = useNavigate();
 
-  console.log(Nigeria.map((state) => state.state.name));
-  console.log(Nigeria);
 
   const [formLocation, setFormLocation] = useState({
     streetAddress: "",
@@ -61,7 +59,7 @@ const CreateListing = () => {
       setSelectedLocals(filteredLocals);
     }
   };
-  console.log(selectedLocals);
+  
 
   const handleSelectAmenities = (facility) => {
     if (amenities.includes(facility)) {
@@ -94,7 +92,6 @@ const CreateListing = () => {
 
   const handlePost = async (e) => {
     e.preventDefault();
-
     try {
       const listingForm = new FormData();
       listingForm.append("creator", creatorId);
@@ -127,6 +124,7 @@ const CreateListing = () => {
       console.log("Publish Listing failed", err.message);
     }
   };
+  
   return (
     <>
       <Navbar />
