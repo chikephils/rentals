@@ -24,7 +24,6 @@ const CreateListing = () => {
   const creatorId = useSelector((state) => state.user._id);
   const navigate = useNavigate();
 
-
   const [formLocation, setFormLocation] = useState({
     streetAddress: "",
     state: "",
@@ -55,11 +54,9 @@ const CreateListing = () => {
     if (name === "state") {
       const filteredLocals =
         Nigeria.find((state) => state.state.name === value)?.state.locals || [];
-      console.log(filteredLocals);
       setSelectedLocals(filteredLocals);
     }
   };
-  
 
   const handleSelectAmenities = (facility) => {
     if (amenities.includes(facility)) {
@@ -114,10 +111,9 @@ const CreateListing = () => {
 
       const response = await axios.post(
         `${server}/listing/create`,
-        listingForm,
-        { withCredentials: true }
+        listingForm
       );
-      console.log(response)
+      console.log(response);
       if (response.status >= 200 && response.status < 300) {
         navigate("/");
       }
@@ -125,7 +121,7 @@ const CreateListing = () => {
       console.log("Publish Listing failed", err.message);
     }
   };
-  
+
   return (
     <>
       <Navbar />
