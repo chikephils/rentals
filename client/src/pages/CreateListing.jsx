@@ -111,7 +111,8 @@ const CreateListing = () => {
 
       const response = await axios.post(
         `${server}/listing/create`,
-        listingForm
+        listingForm,
+        { withCredentials: true }
       );
       console.log(response);
       if (response.status >= 200 && response.status < 300) {
@@ -126,7 +127,7 @@ const CreateListing = () => {
     <>
       <Navbar />
       <div className="create-listing">
-        <h1>Publish your Rentals</h1>
+        <h1>Publish your Property</h1>
         <form onSubmit={handlePost}>
           <div className="create-listing_step1">
             <h2>Step 1: Tell us about the Place</h2>

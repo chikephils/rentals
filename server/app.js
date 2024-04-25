@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 app.use("/test", (req, res) => {
-  res.send("Hello world!");
+  res.send("Hello world! Your Server is Running...");
 });
 
 //config
