@@ -40,8 +40,5 @@ app.use("/api/v2/listing", listing);
 app.use("/api/v2/booking", booking);
 app.use("/api/v2/user", user);
 
-app.use("/test", (req, res) => {
-  res.send("Hello world!");
-});
 
 module.exports = app;
