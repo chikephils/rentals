@@ -13,7 +13,7 @@
   },
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./api/index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js"
