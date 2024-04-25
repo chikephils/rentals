@@ -30,44 +30,51 @@ const SearchPage = () => {
     getSearchListings();
   }, [search]);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Navbar />
       <h1 className="title-list">{search}</h1>
+
       <div className="list">
-        {listings?.map(
-          (
-            {
-              _id,
-              creator,
-              listingPhotoPaths,
-              city,
-              localGovt,
-              state,
-              category,
-              type,
-              price,
-              booking = false,
-            },
-            index
-          ) => (
-            <ListingCard
-              key={index}
-              listingId={_id}
-              creator={creator}
-              listingPhotoPaths={listingPhotoPaths}
-              city={city}
-              localGovt={localGovt}
-              state={state}
-              category={category}
-              type={type}
-              price={price}
-              booking={booking}
-            />
-          )
+        {loading && <Loader />}
+
+        {!loading && listings.length === 0 && (
+          <p className="title-list">No Listings Found</p>
         )}
+
+        {!loading &&
+          listings.length > 0 &&
+          listings?.map(
+            (
+              {
+                _id,
+                creator,
+                listingPhotoPaths,
+                city,
+                localGovt,
+                state,
+                category,
+                type,
+                price,
+                booking = false,
+              },
+              index
+            ) => (
+              <ListingCard
+                key={index}
+                listingId={_id}
+                creator={creator}
+                listingPhotoPaths={listingPhotoPaths}
+                city={city}
+                localGovt={localGovt}
+                state={state}
+                category={category}
+                type={type}
+                price={price}
+                booking={booking}
+              />
+            )
+          )}
       </div>
     </>
   );

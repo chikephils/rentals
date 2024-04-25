@@ -146,16 +146,16 @@ const ListingDetails = () => {
                     direction="horizontal"
                   />
                   {dayCount > 1 && (
-                    <h2>
+                    <h3>
                       ₦{listing.price} x {dayCount} nights
-                    </h2>
+                    </h3>
                   )}
                   {dayCount === 1 && (
-                    <h2>
+                    <h3>
                       ₦{listing.price} x {dayCount} night
-                    </h2>
+                    </h3>
                   )}
-                  <h2>Total price: ₦{listing.price * dayCount}</h2>
+                  <h3>Total price: ₦{listing.price * dayCount}</h3>
                   <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
                   <p>End Date: {dateRange[0].endDate.toDateString()}</p>
                   <button
@@ -171,12 +171,12 @@ const ListingDetails = () => {
 
             {listing.type === "Renting" && (
               <div>
-                <h2>Total price: ₦{listing.price} per Annum</h2>
+                <h3>Total price: ₦{listing.price} per Annum</h3>
               </div>
             )}
             {listing.type === "For Sale" && (
               <div>
-                <h2>Total price: ₦{listing.price} Outright</h2>
+                <h3>Total price: ₦{listing.price} Outright</h3>
               </div>
             )}
           </>

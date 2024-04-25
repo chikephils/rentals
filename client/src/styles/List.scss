@@ -4,7 +4,7 @@
 .title-list {
   color: $blue;
   margin-top: 90px;
-  margin-left: 40px;
+  margin-left: 30px;
   display: inline-block;
 
   @include sm {
@@ -30,7 +30,7 @@
 }
 
 .list {
-  padding: 0 100px 120px;
+  padding: 0 20px 120px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

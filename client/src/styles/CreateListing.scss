@@ -3,7 +3,7 @@
 
 .create-listing {
   background-color: $lightgrey;
-  padding: 40px 60px 120px;
+  padding: 40px 20px 120px;
 
   @include mm {
     padding: 40px 20px;
@@ -346,7 +346,7 @@
     .title {
       input {
         border: 1px solid $grey;
-        padding: 15px 30px;
+        padding: 15px 10px;
         border-radius: 10px;
         font-size: 16px;
         font-weight: 600;
@@ -364,14 +364,41 @@
         margin: 20px 0 10px;
       }
 
-      input,
-      textarea {
+      input {
         border: 1px solid $grey;
-        padding: 15px 30px;
+        padding: 15px 10px;
         border-radius: 10px;
         font-size: 16px;
         font-weight: 600;
         width: 600px;
+
+        @include ml {
+          width: 450px;
+        }
+
+        @include md {
+          width: 350px;
+        }
+
+        @include sm {
+          width: 280px;
+        }
+        @include xs {
+          width: 250px;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+      textarea {
+        border: 1px solid $grey;
+        padding: 15px 10px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        width: 600px;
+        height: 100px;
 
         @include ml {
           width: 450px;

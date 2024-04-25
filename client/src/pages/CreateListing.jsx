@@ -111,8 +111,7 @@ const CreateListing = () => {
 
       const response = await axios.post(
         `${server}/listing/create`,
-        listingForm,
-        { withCredentials: true }
+        listingForm
       );
       console.log(response);
       if (response.status >= 200 && response.status < 300) {
