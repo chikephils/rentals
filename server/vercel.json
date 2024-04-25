@@ -12,8 +12,8 @@
     ],
     "routes": [
         {
-            "src": "/api/v2/(.*)",
-            "dest": "https://your-backend.vercel.app/api/v2/$1"
+            "src": "/test",
+            "dest": "https://your-backend.vercel.app/test"
         },
         {
             "src": "/(.*)",
