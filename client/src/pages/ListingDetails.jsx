@@ -74,114 +74,118 @@ const ListingDetails = () => {
     }
   };
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Navbar />
-
-      <div className="listing-details">
-        <div className="title">
-          <h1>{listing.title}</h1>
-          <div></div>
-        </div>
-        <div className="photos">
-          {listing.listingPhotoPaths?.map((item, index) => (
-            <img
-              src={`${backend_url}/${item.replace("public", "")}`}
-              alt="pics"
-              key={index}
-            />
-          ))}
-        </div>
-        <h2>
-          {listing.type} in {listing.localGovt}, {listing.state}
-        </h2>
-        <p>
-          {listing.bedroomCount} bedrooms - {listing.bathroomCount} bathroom(s)
-        </p>
-        <hr />
-        <div className="profile">
-          <img
-            src={`${backend_url}/${listing.creator?.profileImagePath?.replace(
-              "public",
-              ""
-            )}`}
-            alt="profileImg"
-          />
-          <h3>
-            Hosted by {listing.creator?.firstName} {listing.creator?.lastName}
-          </h3>
-        </div>
-        <hr />
-        <h3>Description</h3>
-        <p>{listing.description}</p>
-
-        <div className="booking">
-          <div>
-            <h2>What this place offers?</h2>
-            <div className="amenities">
-              {listing.amenities[0].split(",").map((item, index) => (
-                <div className="facility" key={index}>
-                  <div className="facility_icon">
-                    {
-                      facilities.find((facility) => facility.name === item)
-                        ?.icon
-                    }
-                  </div>
-                  <p>{item}</p>
-                </div>
-              ))}
-            </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="listing-details">
+          <div className="title">
+            <h1>{listing.title}</h1>
           </div>
-          <>
-            {listing.type === "Serviced Apartment" && (
-              <div>
-                <h2>How long are you Renting?</h2>
-                <div className="date-range-calendar">
-                  <DateRange
-                    ranges={dateRange}
-                    onChange={handleSelect}
-                    className="picker"
-                    direction="horizontal"
-                  />
-                  {dayCount > 1 && (
-                    <h3>
-                      ₦{listing.price} x {dayCount} nights
-                    </h3>
-                  )}
-                  {dayCount === 1 && (
-                    <h3>
-                      ₦{listing.price} x {dayCount} night
-                    </h3>
-                  )}
-                  <h3>Total price: ₦{listing.price * dayCount}</h3>
-                  <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
-                  <p>End Date: {dateRange[0].endDate.toDateString()}</p>
-                  <button
-                    className="button"
-                    type="submit"
-                    onClick={handleSubmit}
-                  >
-                    BOOKING
-                  </button>
-                </div>
-              </div>
-            )}
 
-            {listing.type === "Renting" && (
-              <div>
-                <h3>Total price: ₦{listing.price} per Annum</h3>
+          <div className="photos">
+            {listing.listingPhotoPaths?.map((item, index) => (
+              <img
+                src={`${backend_url}/${item.replace("public", "")}`}
+                alt="pics"
+                key={index}
+              />
+            ))}
+          </div>
+          <h2>
+            {listing.type} in {listing.localGovt}, {listing.state}
+          </h2>
+          <p>
+            {listing.bedroomCount} bedrooms - {listing.bathroomCount}{" "}
+            bathroom(s)
+          </p>
+          <hr />
+          <div className="profile">
+            <img
+              src={`${backend_url}/${listing.creator?.profileImagePath?.replace(
+                "public",
+                ""
+              )}`}
+              alt="profileImg"
+            />
+            <h3>
+              Hosted by {listing.creator?.firstName} {listing.creator?.lastName}
+            </h3>
+          </div>
+          <hr />
+          <h3>Description</h3>
+          <p>{listing.description}</p>
+
+          <div className="booking">
+            <div>
+              <h2>What this place offers?</h2>
+              <div className="amenities">
+                {listing.amenities[0].split(",").map((item, index) => (
+                  <div className="facility" key={index}>
+                    <div className="facility_icon">
+                      {
+                        facilities.find((facility) => facility.name === item)
+                          ?.icon
+                      }
+                    </div>
+                    <p>{item}</p>
+                  </div>
+                ))}
               </div>
-            )}
-            {listing.type === "For Sale" && (
-              <div>
-                <h3>Total price: ₦{listing.price} Outright</h3>
-              </div>
-            )}
-          </>
+            </div>
+            <>
+              {listing.type === "Serviced Apartment" && (
+                <div>
+                  <h2>How long are you Renting?</h2>
+                  <div className="date-range-calendar">
+                    <DateRange
+                      ranges={dateRange}
+                      onChange={handleSelect}
+                      className="picker"
+                      direction="horizontal"
+                    />
+                    {dayCount > 1 && (
+                      <h3>
+                        ₦{listing.price} x {dayCount} nights
+                      </h3>
+                    )}
+                    {dayCount === 1 && (
+                      <h3>
+                        ₦{listing.price} x {dayCount} night
+                      </h3>
+                    )}
+                    <h3>Total price: ₦{listing.price * dayCount}</h3>
+                    <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
+                    <p>End Date: {dateRange[0].endDate.toDateString()}</p>
+                    <button
+                      className="button"
+                      type="submit"
+                      onClick={handleSubmit}
+                    >
+                      BOOKING
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {listing.type === "Renting" && (
+                <div>
+                  <h3>Total price: ₦{listing.price} per Annum</h3>
+                </div>
+              )}
+              {listing.type === "For Sale" && (
+                <div>
+                  <h3>Total price: ₦{listing.price} Outright</h3>
+                </div>
+              )}
+            </>
+          </div>
         </div>
-      </div>
+      )}
+      <br />
+      <br />
       <Footer />
     </>
   );

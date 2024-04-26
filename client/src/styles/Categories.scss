@@ -2,7 +2,7 @@
 @import "./breakpoints.scss";
 
 .categories {
-  padding: 50px 30px;
+  padding: 50px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,10 +10,10 @@
   background-color: $lightgrey;
 
   @include sm {
-    padding: 50px 10px;
+    padding: 50px 0px;
   }
   @include xs {
-    padding: 50px 5px;
+    padding: 50px 0px;
   }
 
   h1 {
@@ -35,12 +35,16 @@
   .categories_list {
     display: flex;
     flex-wrap: wrap;
-    padding: 50px 0;
+    padding: 50px 0px;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
+
+    @include sm {
+      gap: 30px;
+    }
 
     @include xs {
-      gap: 10px;
+      gap: 20px;
     }
 
     a {
@@ -59,6 +63,11 @@
       @include sm {
         width: 150px;
         height: 160px;
+      }
+
+      @include xs {
+        width: 120px;
+        height: 130px;
       }
 
       img {
@@ -85,6 +94,9 @@
 
         p {
           font-weight: 600;
+        }
+        @include xs {
+          font-weight: 400;
         }
       }
 

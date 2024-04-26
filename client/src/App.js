@@ -22,9 +22,10 @@ import { useEffect, useState } from "react";
 import { setListings } from "./redux/state";
 import axios from "axios";
 import { server } from "./server";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const isAuth = Boolean(useSelector((state) => state.token));
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ function App() {
       const response = await axios.get(`${server}/listing/get-listings`);
       const data = await response.data;
       dispatch(setListings(data));
-      setLoading(false)
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -42,15 +43,19 @@ function App() {
   useEffect(() => {
     getFeedListings();
   }, []);
-  
+
   return (
-    <div>
-      <Router>
+    <>
+      <ScrollToTop />
+      <div>
         <Routes>
           <Route path="/" element={<HomePage loading={loading} />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/all-listing" element={<ListingPage loading={loading} />} />
+          <Route
+            path="/all-listing"
+            element={<ListingPage loading={loading} />}
+          />
           <Route
             path="/create-listing"
             element={isAuth ? <CreateListing /> : <Navigate to="/login" />}
@@ -78,8 +83,8 @@ function App() {
             element={isAuth ? <ReservationList /> : <Navigate to="/login" />}
           />
         </Routes>
-      </Router>
-    </div>
+      </div>
+    </>
   );
 }
 

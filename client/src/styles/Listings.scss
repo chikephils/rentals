@@ -9,7 +9,10 @@
   gap: 60px;
 
   @include sm {
-    padding: 50px 20px;
+    padding: 50px 0px;
+  }
+  @include xs {
+    padding: 50px 0px;
   }
 
   .category {

@@ -13,6 +13,7 @@ import { server } from "../server";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Nigeria } from "../Data";
+import Loader from "../components/Loader";
 
 const CreateListing = () => {
   const [photos, setPhotos] = useState([]);
@@ -23,6 +24,7 @@ const CreateListing = () => {
   const [amenities, setAmenities] = useState([]);
   const creatorId = useSelector((state) => state.user._id);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const [formLocation, setFormLocation] = useState({
     streetAddress: "",
@@ -89,6 +91,7 @@ const CreateListing = () => {
 
   const handlePost = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const listingForm = new FormData();
       listingForm.append("creator", creatorId);
@@ -119,6 +122,8 @@ const CreateListing = () => {
       }
     } catch (err) {
       console.log("Publish Listing failed", err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -422,8 +427,8 @@ const CreateListing = () => {
               />
             </div>
           </div>
-          <button className="submit_btn" type="submit">
-            CREATE YOUR LISTING
+          <button className="submit_btn" type="submit" disabled={loading}>
+            {loading ? <Loader /> : "CREATE YOUR LISTING"}
           </button>
         </form>
       </div>

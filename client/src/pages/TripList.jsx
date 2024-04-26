@@ -8,7 +8,6 @@ import { server } from "../server";
 import { setTripLists } from "../redux/state";
 import ListingCard from "../components/ListingCard";
 
-
 const TripList = () => {
   const [loading, setLoading] = useState(true);
   const tripList = useSelector((state) => state.user.tripList);
@@ -20,7 +19,6 @@ const TripList = () => {
       const response = await axios.get(`${server}/user/${userId}/trips`);
 
       const data = response.data;
-      console.log(data);
       dispatch(setTripLists(data));
       setLoading(false);
     } catch (err) {
@@ -32,46 +30,48 @@ const TripList = () => {
     getTripList();
   }, []);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Navbar />
 
       <h1 className="title-list">Your Trip List</h1>
       <div className="list">
-        {tripList?.map(
-          (
-            {
-              listingId,
-              hostId,
-              startDate,
-              endDate,
-              totalPrice,
-              booking = true,
-            },
-            index
-          ) => (
-            <ListingCard
-              key={index}
-              creator={hostId._id}
-              listingId={listingId._id}
-              startDate={startDate}
-              endDate={endDate}
-              totalPrice={totalPrice}
-              listingPhotoPaths={listingId.listingPhotoPaths}
-              city={listingId.city}
-              localGovt={listingId.localGovt}
-              state={listingId.state}
-              category={listingId.category}
-              booking={booking}
-            />
-          )
+        {loading && <Loader />}
+
+        {!loading && tripList.length === 0 && (
+          <p className="title-list">No Listings Found</p>
         )}
+        {!loading &&
+          tripList.length > 0 &&
+          tripList?.map(
+            (
+              {
+                listingId,
+                hostId,
+                startDate,
+                endDate,
+                totalPrice,
+                booking = true,
+              },
+              index
+            ) => (
+              <ListingCard
+                key={index}
+                creator={hostId._id}
+                listingId={listingId._id}
+                startDate={startDate}
+                endDate={endDate}
+                totalPrice={totalPrice}
+                listingPhotoPaths={listingId.listingPhotoPaths}
+                city={listingId.city}
+                localGovt={listingId.localGovt}
+                state={listingId.state}
+                category={listingId.category}
+                booking={booking}
+              />
+            )
+          )}
       </div>
-      <br />
-      <br />
-     
     </>
   );
 };

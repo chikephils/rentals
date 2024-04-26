@@ -54,12 +54,13 @@
   .photos {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 30px;
     margin: 20px 0;
     justify-content: center;
 
     img {
       max-width: 280px;
+      max-height: 280px;
     }
   }
 

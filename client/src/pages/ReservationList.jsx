@@ -21,7 +21,6 @@ const ReservationList = () => {
       const response = await axios.get(`${server}/user/${userId}/reservations`);
 
       const data = response.data;
-      console.log(data);
       dispatch(setReservationList(data));
       setLoading(false);
     } catch (err) {
@@ -33,42 +32,47 @@ const ReservationList = () => {
     getReservationList();
   }, []);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Navbar />
 
       <h1 className="title-list">Your Reservations</h1>
       <div className="list">
-        {reservationList?.map(
-          (
-            {
-              listingId,
-              startDate,
-              endDate,
-              totalPrice,
-              hostId,
-              booking = true,
-            },
-            index
-          ) => (
-            <ListingCard
-              key={index}
-              creator={hostId._id}
-              listingId={listingId._id}
-              startDate={startDate}
-              endDate={endDate}
-              totalPrice={totalPrice}
-              listingPhotoPaths={listingId.listingPhotoPaths}
-              city={listingId.city}
-              localGovt={listingId.localGovt}
-              state={listingId.state}
-              category={listingId.category}
-              booking={booking}
-            />
-          )
+        {loading && <Loader />}
+
+        {!loading && reservationList.length === 0 && (
+          <p className="title-list">No Listings Found</p>
         )}
+        {!loading &&
+          reservationList.length > 0 &&
+          reservationList?.map(
+            (
+              {
+                listingId,
+                hostId,
+                startDate,
+                endDate,
+                totalPrice,
+                booking = true,
+              },
+              index
+            ) => (
+              <ListingCard
+                key={index}
+                creator={hostId._id}
+                listingId={listingId._id}
+                startDate={startDate}
+                endDate={endDate}
+                totalPrice={totalPrice}
+                listingPhotoPaths={listingId.listingPhotoPaths}
+                city={listingId.city}
+                localGovt={listingId.localGovt}
+                state={listingId.state}
+                category={listingId.category}
+                booking={booking}
+              />
+            )
+          )}
       </div>
     </>
   );

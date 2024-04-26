@@ -31,44 +31,50 @@ const PropertyList = () => {
     getPropertyList();
   }, []);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Navbar />
-      <h1 className="title-list">Your Properties List</h1>
+
+      <h1 className="title-list">Your Property List</h1>
       <div className="list">
-        {properties?.map(
-          (
-            {
-              _id,
-              creator,
-              listingPhotoPaths,
-              city,
-              localGovt,
-              state,
-              category,
-              type,
-              price,
-              booking = false,
-            },
-            index
-          ) => (
-            <ListingCard
-              key={index}
-              listingId={_id}
-              creator={creator}
-              listingPhotoPaths={listingPhotoPaths}
-              city={city}
-              localGovt={localGovt}
-              state={state}
-              category={category}
-              type={type}
-              price={price}
-              booking={booking}
-            />
-          )
+        {loading && <Loader />}
+
+        {!loading && properties.length === 0 && (
+          <p className="title-list">No Listings Found</p>
         )}
+        {!loading &&
+          properties.length > 0 &&
+          properties?.map(
+            (
+              {
+                _id,
+                creator,
+                listingPhotoPaths,
+                city,
+                localGovt,
+                state,
+                category,
+                type,
+                price,
+                booking = false,
+              },
+              index
+            ) => (
+              <ListingCard
+                key={index}
+                listingId={_id}
+                creator={creator}
+                listingPhotoPaths={listingPhotoPaths}
+                city={city}
+                localGovt={localGovt}
+                state={state}
+                category={category}
+                type={type}
+                price={price}
+                booking={booking}
+              />
+            )
+          )}
       </div>
     </>
   );
