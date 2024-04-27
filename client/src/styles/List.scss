@@ -26,7 +26,6 @@
   @include sm {
     margin-right: 5px;
   }
-  
 }
 
 .list {
@@ -34,7 +33,8 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
+  grid-row-gap: 25px;
+  grid-column-gap: 25px;
 
   @include xl {
     padding: 0 20px 120px;

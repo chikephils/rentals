@@ -6,13 +6,14 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 60px;
+  grid-row-gap: 3em;
+  grid-column-gap: 3em;
 
   @include sm {
-    padding: 50px 0px;
+    padding: 50px 10px;
   }
   @include xs {
-    padding: 50px 0px;
+    padding: 50px 10px;
   }
 
   .category {
@@ -46,7 +47,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  grid-row-gap: 3em;
+  grid-column-gap: 3em;
 
   @include lg {
     padding: 0 20px 120px;

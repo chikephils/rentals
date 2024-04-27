@@ -43,8 +43,8 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      row-gap: 2ch;
-      column-gap: 1em;
+      grid-row-gap: 2rem;
+      grid-column-gap: 2em;
       padding: 0 20px;
 
       @include lg {
@@ -94,8 +94,8 @@
     .type-list {
       display: flex;
       flex-direction: column;
-      row-gap: 3ch;
-      column-gap: 2em;
+      grid-row-gap: 2em;
+      grid-column-gap: 3em;
 
       .type {
         display: flex;
@@ -140,14 +140,14 @@
       max-width: 700px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      row-gap: 3ch;
-      column-gap: 2em;
+      grid-row-gap: 2em;
+      grid-column-gap: 2em;
 
       @include ml {
         display: flex;
         flex-direction: column;
-        row-gap: 3ch;
-        column-gap: 2em;
+        grid-row-gap: 2em;
+        grid-column-gap: 2em;
       }
     }
 
@@ -185,14 +185,14 @@
     .basics {
       display: flex;
       flex-wrap: wrap;
-      row-gap: 3ch;
-      column-gap: 2em;
+      grid-row-gap: 2em;
+      grid-column-gap: 2em;
 
       .basic {
         display: flex;
         align-items: center;
-        row-gap: 3ch;
-        column-gap: 2em;
+        grid-row-gap: 2em;
+        grid-column-gap: 2em;
         padding: 15px;
         border: 1px solid $grey;
         border-radius: 10px;
@@ -204,8 +204,8 @@
         &_count {
           display: flex;
           align-items: center;
-          row-gap: 1ch;
-          column-gap: 1em;
+          grid-row-gap: 1ch;
+          grid-column-gap: 1em;
           font-size: 20px;
         }
       }
@@ -238,14 +238,14 @@
     .amenities {
       display: flex;
       flex-wrap: wrap;
-      row-gap: 3ch;
-      column-gap: 2em;
+      grid-row-gap: 3ch;
+      grid-column-gap: 2em;
       justify-content: center;
       align-items: center;
 
       @include sm {
-        row-gap: 3ch;
-        column-gap: 2em;
+        grid-row-gap: 3ch;
+        grid-column-gap: 2em;
       }
 
       .facility {
@@ -288,8 +288,8 @@
     .photos {
       display: flex;
       flex-wrap: wrap;
-      row-gap: 3ch;
-      column-gap: 2em;
+      grid-row-gap: 2em;
+      grid-column-gap: 2em;
 
       .photo {
         position: relative;

@@ -154,7 +154,7 @@ const CreateListing = () => {
               ))}
             </div>
 
-            <h3>What type of place with your Tenant have?</h3>
+            <h3>What type of place do you have?</h3>
             <div className="type-list">
               {types?.map((item, index) => (
                 <div
