@@ -28,7 +28,8 @@
     @include sm {
       flex-direction: column;
       align-items: flex-start;
-      gap: 15px;
+      row-gap: 3ch;
+      column-gap: 2em;
     }
 
     h1 {
@@ -40,7 +41,8 @@
     .save {
       display: flex;
       align-items: center;
-      gap: 10px;
+      row-gap: 3ch;
+      column-gap: 2em;
       cursor: pointer;
 
       p {
@@ -70,7 +72,8 @@
 
   .profile {
     display: flex;
-    gap: 20px;
+    row-gap: 3ch;
+    column-gap: 2em;
     align-items: center;
 
     img {
@@ -103,13 +106,14 @@
       max-width: 700px;
 
       @include sm {
-        grid-column-gap: 20px;
+        column-gap: 20px;
       }
 
       .facility {
         display: flex;
         align-items: center;
-        gap: 20px;
+        row-gap: 3ch;
+        column-gap: 2em;
         font-size: 18px;
         font-weight: 600;
         margin-bottom: 20px;

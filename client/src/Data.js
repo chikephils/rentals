@@ -1,7 +1,7 @@
 import { TbBeach, l } from "react-icons/tb";
 import { GiFamilyHouse, GiGasStove, GiHouse } from "react-icons/gi";
 import { FaShower, FaFireExtinguisher, FaKey } from "react-icons/fa";
-import { FaHouseUser, FaKitchenSet, FaHouseSignal } from "react-icons/fa6";
+import { FaHouseUser, FaKitchenSet, FaHouseSignal, FaPersonSwimming } from "react-icons/fa6";
 import {
   BiSolidWasher,
   BiSolidDryer,
@@ -149,6 +149,10 @@ export const facilities = [
   {
     name: "Air Conditioning",
     icon: <BsSnow />,
+  },
+  {
+    name: "Swimming Pool",
+    icon: <FaPersonSwimming />,
   },
   {
     name: "Security cameras",

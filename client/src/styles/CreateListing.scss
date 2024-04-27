@@ -4,13 +4,15 @@
 .create-listing {
   background-color: $lightgrey;
   padding: 40px 20px 120px;
+  margin-top: 75px;
 
   @include mm {
-    padding: 40px 20px;
+    padding: 40px 10px 120px;
   }
 
   h1 {
     color: $blue;
+    font-size: 25px;
   }
 
   &_step1 {
@@ -41,7 +43,8 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
+      row-gap: 2ch;
+      column-gap: 1em;
       padding: 0 20px;
 
       @include lg {
@@ -91,7 +94,8 @@
     .type-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      row-gap: 3ch;
+      column-gap: 2em;
 
       .type {
         display: flex;
@@ -136,12 +140,14 @@
       max-width: 700px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      row-gap: 3ch;
+      column-gap: 2em;
 
       @include ml {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        row-gap: 3ch;
+        column-gap: 2em;
       }
     }
 
@@ -179,12 +185,14 @@
     .basics {
       display: flex;
       flex-wrap: wrap;
-      gap: 40px;
+      row-gap: 3ch;
+      column-gap: 2em;
 
       .basic {
         display: flex;
         align-items: center;
-        gap: 30px;
+        row-gap: 3ch;
+        column-gap: 2em;
         padding: 15px;
         border: 1px solid $grey;
         border-radius: 10px;
@@ -196,7 +204,8 @@
         &_count {
           display: flex;
           align-items: center;
-          gap: 9px;
+          row-gap: 1ch;
+          column-gap: 1em;
           font-size: 20px;
         }
       }
@@ -229,12 +238,14 @@
     .amenities {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      row-gap: 3ch;
+      column-gap: 2em;
       justify-content: center;
       align-items: center;
 
       @include sm {
-        gap: 10px;
+        row-gap: 3ch;
+        column-gap: 2em;
       }
 
       .facility {
@@ -277,7 +288,8 @@
     .photos {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      row-gap: 3ch;
+      column-gap: 2em;
 
       .photo {
         position: relative;
@@ -434,6 +446,7 @@
 
   .submit_btn {
     margin-top: 40px;
+    margin-left: 20px;
 
     @include buttonStyle;
 

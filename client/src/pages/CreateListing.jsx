@@ -13,7 +13,7 @@ import { server } from "../server";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Nigeria } from "../Data";
-import Loader from "../components/Loader";
+
 
 const CreateListing = () => {
   const [photos, setPhotos] = useState([]);
@@ -428,7 +428,7 @@ const CreateListing = () => {
             </div>
           </div>
           <button className="submit_btn" type="submit" disabled={loading}>
-            {loading ? <Loader /> : "CREATE YOUR LISTING"}
+            {loading ? "Creating..." : "CREATE YOUR LISTING"}
           </button>
         </form>
       </div>
