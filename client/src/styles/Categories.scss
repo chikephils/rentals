@@ -37,8 +37,6 @@
     flex-wrap: wrap;
     padding: 50px 0px;
     justify-content: center;
-    grid-row-gap: 2em;
-    grid-column-gap: 2em;
 
     a {
       text-decoration: none;
@@ -52,7 +50,7 @@
       width: 250px;
       height: 200px;
       cursor: pointer;
-      border-radius: 20px;
+      margin: 10px;
 
       @include sm {
         width: 150px;

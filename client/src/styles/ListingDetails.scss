@@ -28,13 +28,11 @@
     @include sm {
       flex-direction: column;
       align-items: flex-start;
-      grid-row-gap: 3em;
-      grid-column-gap: 2em;
     }
 
     h1 {
       @include sm {
-        font-size: 26px;
+        font-size: 22px;
       }
     }
 
@@ -56,14 +54,12 @@
   .photos {
     display: flex;
     flex-wrap: wrap;
-    grid-row-gap: 2em;
-    grid-column-gap: 2em;
-    margin: 20px 0;
     justify-content: center;
 
     img {
       max-width: 280px;
       max-height: 240px;
+      margin: 20px;
     }
   }
 
@@ -73,14 +69,12 @@
 
   .profile {
     display: flex;
-    grid-row-gap: 2em;
-    grid-column-gap: 2em;
     align-items: center;
 
     img {
       width: 60px;
       height: 60px;
-      margin: 0;
+      margin-right: 20px;
       border-radius: 50px;
     }
   }
@@ -114,7 +108,7 @@
       .facility {
         display: flex;
         align-items: center;
-        grid-column-gap: 20px;
+
         font-size: 18px;
         font-weight: 600;
         margin-bottom: 20px;
@@ -125,6 +119,7 @@
 
         &_icon {
           font-size: 30px;
+          padding-right: 10px;
         }
 
         p {

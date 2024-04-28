@@ -40,9 +40,8 @@
 
     .category-list {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
+      justify-content: center;
       padding: 0 20px;
 
       @include lg {
@@ -57,6 +56,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         width: 120px;
         height: 90px;
         border: 1px solid $grey;
@@ -184,9 +184,8 @@
 
       .basic {
         display: flex;
+        justify-content: center;
         align-items: center;
-        row-gap: 2em;
-        column-gap: 2em;
         padding: 15px;
         border: 1px solid $grey;
         border-radius: 10px;
@@ -194,13 +193,13 @@
 
         p {
           font-weight: 600;
+          margin: 0px 10px;
         }
 
         &_count {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: 10px;
           font-size: 20px;
         }
       }
@@ -233,15 +232,7 @@
     .amenities {
       display: flex;
       flex-wrap: wrap;
-      // row-gap: 3ch;
-      // column-gap: 2em;
       justify-content: center;
-    
-
-      @include sm {
-        // row-gap: 3ch;
-        // column-gap: 2em;
-      }
 
       .facility {
         display: flex;
@@ -284,14 +275,13 @@
     .photos {
       display: flex;
       flex-wrap: wrap;
-      row-gap: 2rem;
-      column-gap: 2em;
 
       .photo {
         position: relative;
         width: 250px;
         height: 150px;
         cursor: move;
+        margin: 10px;
 
         img {
           width: 100%;

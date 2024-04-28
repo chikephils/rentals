@@ -6,8 +6,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  grid-row-gap: 3em;
-  grid-column-gap: 3em;
 
   @include sm {
     padding: 50px 10px;
@@ -22,6 +20,11 @@
     align-items: center;
     color: $darkgrey;
     cursor: pointer;
+    margin: 25px;
+
+    @include sm {
+      margin: 20px;
+    }
 
     &_icon {
       font-size: 30px;
@@ -47,8 +50,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  grid-row-gap: 3em;
-  grid-column-gap: 3em;
+  gap: 20px;
 
   @include lg {
     padding: 0 20px 120px;
