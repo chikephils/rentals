@@ -7,7 +7,7 @@ import axios from "axios";
 import { server } from "../server";
 import { setPropertyLists } from "../redux/state";
 import Loader from "../components/Loader";
-import Footer from "../components/Footer";
+
 
 const PropertyList = () => {
   const [loading, setLoading] = useState(true);

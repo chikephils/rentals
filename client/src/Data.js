@@ -1,4 +1,4 @@
-import { TbBeach, l } from "react-icons/tb";
+import { TbBeach} from "react-icons/tb";
 import { GiFamilyHouse, GiGasStove, GiHouse } from "react-icons/gi";
 import { FaShower, FaFireExtinguisher, FaKey } from "react-icons/fa";
 import { FaHouseUser, FaKitchenSet, FaHouseSignal, FaPersonSwimming } from "react-icons/fa6";

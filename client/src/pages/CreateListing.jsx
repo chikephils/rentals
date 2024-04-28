@@ -428,7 +428,7 @@ const CreateListing = () => {
             </div>
           </div>
           <button className="submit_btn" type="submit" disabled={loading}>
-            {loading ? "Creating..." : "CREATE YOUR LISTING"}
+            {loading ? "CREATING..." : "CREATE YOUR LISTING"}
           </button>
         </form>
       </div>

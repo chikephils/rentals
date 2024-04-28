@@ -11,6 +11,11 @@
   background: url("../../public/assets/register.jpg") center;
   background-size: cover;
 
+  img {
+    width: 90px;
+    height: 60px;
+  }
+
   &_content {
     display: flex;
     flex-direction: column;
@@ -19,6 +24,7 @@
     padding: 40px;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
+    margin-bottom: 20px;
 
     @include lg {
       width: 60%;
@@ -27,6 +33,7 @@
     @include mm {
       width: 80%;
       padding-bottom: 20px;
+      gap: 0px;
     }
 
     &_form {
@@ -34,6 +41,9 @@
       flex-direction: column;
       align-items: center;
       gap: 25px;
+      @include mm {
+        gap: 0px;
+      }
 
       input {
         width: 100%;
@@ -44,6 +54,9 @@
         outline: none;
         text-align: center;
         color: white;
+        @include mm {
+          margin-bottom: 20px;
+        }
 
         input:not(:placeholder-shown):focus {
           background: transparent;
@@ -71,6 +84,9 @@
 
       button {
         margin-top: 15px;
+        @include mm {
+          margin-bottom: 20px;
+        }
 
         @include buttonStyle;
         width: auto;

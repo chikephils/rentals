@@ -3,6 +3,7 @@ import "../styles/Register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { server } from "../server";
 import axios from "axios";
+import { FiUpload } from "react-icons/fi";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -56,6 +57,9 @@ const RegisterPage = () => {
 
   return (
     <div className="register">
+      <Link to="/">
+        <img src="/assets/logo.png" alt="logo" />
+      </Link>
       <div className="register_content">
         <form className="register_content_form" onSubmit={handleSubmit}>
           <input
@@ -109,7 +113,7 @@ const RegisterPage = () => {
             required
           />
           <label htmlFor="image">
-            <img src="/assets/addImage.png" alt="add profile" />
+            <FiUpload size={30} />
             <p>Upload Your Photo</p>
           </label>
           {formData.profileImage && (

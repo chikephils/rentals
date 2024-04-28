@@ -440,5 +440,8 @@
     &:hover {
       box-shadow: 0 0 10px 3px rgb(117, 117, 117);
     }
+    &:disabled {
+      box-shadow: 0 0 10px 3px rgb(117, 117, 117);
+    }
   }
 }

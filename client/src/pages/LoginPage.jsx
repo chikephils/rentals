@@ -41,6 +41,9 @@ const LoginPage = () => {
   };
   return (
     <div className="login">
+      <Link to="/">
+        <img src="/assets/logo.png" alt="logo" />
+      </Link>
       <div className="login_content">
         <form className="login_content_form" onSubmit={handleSubmit}>
           <input
