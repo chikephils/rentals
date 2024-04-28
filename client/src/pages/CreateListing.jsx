@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Nigeria } from "../Data";
 
-
 const CreateListing = () => {
   const [photos, setPhotos] = useState([]);
   const [category, setCategory] = useState("");
@@ -111,6 +110,8 @@ const CreateListing = () => {
       photos.forEach((photo) => {
         listingForm.append("listingPhotos", photo);
       });
+
+      console.log(...listingForm);
 
       const response = await axios.post(
         `${server}/listing/create`,
