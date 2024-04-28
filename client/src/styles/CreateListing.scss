@@ -43,8 +43,6 @@
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      grid-row-gap: 2rem;
-      grid-column-gap: 2em;
       padding: 0 20px;
 
       @include lg {
@@ -59,8 +57,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        width: 110px;
+        width: 120px;
         height: 90px;
         border: 1px solid $grey;
         border-radius: 10px;
@@ -94,8 +91,6 @@
     .type-list {
       display: flex;
       flex-direction: column;
-      grid-row-gap: 2em;
-      grid-column-gap: 3em;
 
       .type {
         display: flex;
@@ -107,6 +102,7 @@
         border-radius: 10px;
         cursor: pointer;
         transition: 0.3s ease;
+        margin-bottom: 30px;
 
         &_text {
           max-width: 400px;
@@ -140,14 +136,14 @@
       max-width: 700px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      grid-row-gap: 2em;
-      grid-column-gap: 2em;
+      row-gap: 2em;
+      column-gap: 2em;
 
       @include ml {
         display: flex;
         flex-direction: column;
-        grid-row-gap: 2em;
-        grid-column-gap: 2em;
+        row-gap: 2em;
+        column-gap: 2em;
       }
     }
 
@@ -185,17 +181,16 @@
     .basics {
       display: flex;
       flex-wrap: wrap;
-      grid-row-gap: 2em;
-      grid-column-gap: 2em;
 
       .basic {
         display: flex;
         align-items: center;
-        grid-row-gap: 2em;
-        grid-column-gap: 2em;
+        row-gap: 2em;
+        column-gap: 2em;
         padding: 15px;
         border: 1px solid $grey;
         border-radius: 10px;
+        margin: 10px;
 
         p {
           font-weight: 600;
@@ -204,8 +199,8 @@
         &_count {
           display: flex;
           align-items: center;
-          grid-row-gap: 1ch;
-          grid-column-gap: 1em;
+          justify-content: space-between;
+          gap: 10px;
           font-size: 20px;
         }
       }
@@ -238,14 +233,14 @@
     .amenities {
       display: flex;
       flex-wrap: wrap;
-      grid-row-gap: 3ch;
-      grid-column-gap: 2em;
+      // row-gap: 3ch;
+      // column-gap: 2em;
       justify-content: center;
-      align-items: center;
+    
 
       @include sm {
-        grid-row-gap: 3ch;
-        grid-column-gap: 2em;
+        // row-gap: 3ch;
+        // column-gap: 2em;
       }
 
       .facility {
@@ -259,6 +254,7 @@
         border-radius: 10px;
         cursor: pointer;
         transition: 0.2s ease;
+        margin: 5px;
 
         @include sm {
           width: 140px;
@@ -288,8 +284,8 @@
     .photos {
       display: flex;
       flex-wrap: wrap;
-      grid-row-gap: 2em;
-      grid-column-gap: 2em;
+      row-gap: 2rem;
+      column-gap: 2em;
 
       .photo {
         position: relative;
