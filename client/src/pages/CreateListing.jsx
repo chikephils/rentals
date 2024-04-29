@@ -108,10 +108,12 @@ const CreateListing = () => {
       listingForm.append("description", formDescription.description);
       listingForm.append("price", formDescription.price);
 
-      photos.forEach((photo) => {
-        listingForm.append("listingPhotos", photo);
+      // Append each file individually with the same field name
+      photos.forEach((photo, index) => {
+        listingForm.append(`listingPhotos[${index}]`, photo);
       });
-      console.log(...listingForm);
+      console.log(listingForm);
+      console.log(...listingForm)
       const response = await axios.post(
         `${server}/listing/create`,
         listingForm,
