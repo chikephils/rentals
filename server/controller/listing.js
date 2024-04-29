@@ -31,7 +31,8 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
       price,
     } = req.body;
 
-    const listingPhotos = req.files;
+    const listingPhotos = req.files
+
     if (!listingPhotos) {
       return res.status(400).send("No Photo uploaded");
     }

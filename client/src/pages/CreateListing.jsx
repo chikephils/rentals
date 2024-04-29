@@ -76,6 +76,7 @@ const CreateListing = () => {
 
   const handleDragPhoto = (result) => {
     if (!result.destination) return;
+
     const items = Array.from(photos);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
