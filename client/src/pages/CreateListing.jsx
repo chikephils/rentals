@@ -106,17 +106,17 @@ const CreateListing = () => {
       listingForm.append("title", formDescription.title);
       listingForm.append("description", formDescription.description);
       listingForm.append("price", formDescription.price);
-  
+
       photos.forEach((photo) => {
         listingForm.append("listingPhotos", photo);
       });
-  
+      console.log(...listingForm);
       const response = await axios.post(
         `${server}/listing/create`,
         listingForm,
         {
           headers: {
-            "Content-Type": "multipart/form-data", 
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -130,7 +130,6 @@ const CreateListing = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
