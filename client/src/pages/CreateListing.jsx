@@ -96,7 +96,7 @@ const CreateListing = () => {
 
     const newPhotos = [];
 
-    // Convert images to Data URLs
+    // Convert images to base64 strings
     for (const photo of photos) {
       const reader = new FileReader();
       reader.readAsDataURL(photo);
@@ -109,35 +109,31 @@ const CreateListing = () => {
     }
 
     try {
-      const listingForm = new FormData();
-      listingForm.append("creator", creatorId);
-      listingForm.append("category", category);
-      listingForm.append("type", type);
-      listingForm.append("streetAddress", formLocation.streetAddress);
-      listingForm.append("city", formLocation.city);
-      listingForm.append("localGovt", formLocation.localGovt);
-      listingForm.append("state", formLocation.state);
-      listingForm.append("bedroomCount", bedroomCount);
-      listingForm.append("bathroomCount", bathroomCount);
-      listingForm.append("amenities", amenities);
-      listingForm.append("title", formDescription.title);
-      listingForm.append("description", formDescription.description);
-      listingForm.append("price", formDescription.price);
-
-      newPhotos.forEach((photo) => {
-        listingForm.append("listingPhotos", photo);
-      });
-      console.log(...listingForm);
-
       const response = await axios.post(
         `${server}/listing/create`,
-        listingForm,
+        {
+          creator: creatorId,
+          category,
+          type,
+          streetAddress: formLocation.streetAddress,
+          city: formLocation.city,
+          localGovt: formLocation.localGovt,
+          state: formLocation.state,
+          bedroomCount,
+          bathroomCount,
+          amenities,
+          title: formDescription.title,
+          description: formDescription.description,
+          price: formDescription.price,
+          listingPhotos: newPhotos, // Include base64 strings directly in the payload
+        },
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       );
+
       console.log(response);
       if (response.status >= 200 && response.status < 300) {
         toast.success(response.data.message);

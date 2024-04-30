@@ -4,7 +4,7 @@ const multer = require("multer");
 
 const upload = multer();
 
-router.post("/create", upload.array("listingPhotos"), async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     if (!req.body.listingPhotos) {
       return res.status(400).json({ message: "No picture uploaded" });
@@ -30,46 +30,14 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
       });
     }
 
-    const {
-      creator,
-      category,
-      type,
-      streetAddress,
-      appSuite,
-      city,
-      localGovt,
-      state,
-      bedroomCount,
-      bathroomCount,
-      amenities,
-      title,
-      description,
-      price,
-    } = req.body;
+    const listingData = req.body;
+    listingData.listingPhotoPaths = imagesLinks;
 
-    const listingPhotoPaths = imagesLinks;
-
-    const newListing = new Listing({
-      creator,
-      category,
-      type,
-      streetAddress,
-      appSuite,
-      city,
-      localGovt,
-      state,
-      bedroomCount,
-      bathroomCount,
-      amenities,
-      listingPhotoPaths,
-      title,
-      description,
-      price,
-    });
+    const newListing = new Listing(listingData);
 
     await newListing.save();
 
-    res.status(200).json(newListing);
+    res.status(200).json({ messge: "Created Successfully", newListing });
   } catch (err) {
     res
       .status(400)
