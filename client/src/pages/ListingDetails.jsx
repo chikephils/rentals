@@ -87,11 +87,7 @@ const ListingDetails = () => {
 
           <div className="photos">
             {listing.listingPhotoPaths?.map((item, index) => (
-              <img
-                src={`${backend_url}/${item.replace("public", "")}`}
-                alt="pics"
-                key={index}
-              />
+              <img src={`${item.url}`} alt="pics" key={index} />
             ))}
           </div>
           <h2>

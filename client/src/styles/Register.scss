@@ -10,10 +10,12 @@
   flex-direction: column;
   background: url("../../public/assets/register.jpg") center;
   background-size: cover;
+  
 
   img {
     width: 90px;
     height: 60px;
+    margin-top: 20px;
   }
 
   &_content {

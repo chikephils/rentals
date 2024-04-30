@@ -2,24 +2,37 @@ const router = require("express").Router();
 const Listing = require("../models/Listing");
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-
 const upload = multer({ storage });
 
 router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   try {
+    let images = [];
+
+    if (typeof req.body.listingPhotos === "string") {
+      images.push(req.body.listingPhotos);
+    } else {
+      images = req.body.listingPhotos;
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+
     const {
       creator,
       category,
       type,
       streetAddress,
+      appSuite,
       city,
       localGovt,
       state,
@@ -31,18 +44,14 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
       price,
     } = req.body;
 
-    const listingPhotos = req.files
-
-    if (!listingPhotos) {
-      return res.status(400).send("No Photo uploaded");
-    }
-    const listingPhotoPaths = listingPhotos.map((file) => file.path);
+    const listingPhotoPaths = imagesLinks;
 
     const newListing = new Listing({
       creator,
       category,
       type,
       streetAddress,
+      appSuite,
       city,
       localGovt,
       state,

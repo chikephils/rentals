@@ -7,6 +7,7 @@ import { FiUpload } from "react-icons/fi";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -36,6 +37,7 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const registerForm = new FormData();
 
@@ -52,6 +54,8 @@ const RegisterPage = () => {
       }
     } catch (err) {
       console.log("Registration failed", err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -123,8 +127,8 @@ const RegisterPage = () => {
               style={{ maxWidth: "80px" }}
             />
           )}
-          <button type="submit" disabled={!passwordMatch}>
-            REGISTER
+          <button type="submit" disabled={!passwordMatch || loading}>
+            {loading ? "Please Wait..." : "REGISTER"}
           </button>
         </form>
         <Link to="/login">Already have an account? Log in Here</Link>

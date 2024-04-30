@@ -92,6 +92,21 @@ const CreateListing = () => {
   const handlePost = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    const newPhotos = [];
+
+    // Convert images to Data URLs
+    for (const photo of photos) {
+      const reader = new FileReader();
+      reader.readAsDataURL(photo);
+      await new Promise((resolve) => {
+        reader.onload = () => {
+          newPhotos.push(reader.result);
+          resolve();
+        };
+      });
+    }
+
     try {
       const listingForm = new FormData();
       listingForm.append("creator", creatorId);
@@ -108,12 +123,11 @@ const CreateListing = () => {
       listingForm.append("description", formDescription.description);
       listingForm.append("price", formDescription.price);
 
-      // Append each file individually with the same field name
-      photos.forEach((photo, index) => {
-        listingForm.append(`listingPhotos[${index}]`, photo);
+      newPhotos.forEach((photo) => {
+        listingForm.append("listingPhotos", photo);
       });
-      console.log(listingForm);
-      console.log(...listingForm)
+      console.log(...listingForm);
+
       const response = await axios.post(
         `${server}/listing/create`,
         listingForm,

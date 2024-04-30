@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const User = require("../models/User");
+const cloudinary = require("cloudinary");
 
 //Multer for file Upload
 const storage = multer.diskStorage({
@@ -19,14 +20,11 @@ const upload = multer({ storage });
 // REGISTER USER
 router.post("/register", upload.single("profileImage"), async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
-    const profileImage = req.file;
+    const { firstName, lastName, email, password, profileImage } = req.body;
 
     if (!profileImage) {
       return res.status(400).send("No file uploaded");
     }
-
-    const profileImagePath = profileImage.path;
 
     const existingUser = await User.findOne({ email });
 
@@ -37,12 +35,19 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    const myCloud = await cloudinary.v2.uploader.upload(profileImage, {
+      folder: "chireva-rentals-avatars",
+    });
+
     const newUser = new User({
       firstName,
       lastName,
       email,
       password: hashedPassword,
-      profileImagePath,
+      profileImagePath: {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      },
     });
 
     await newUser.save();

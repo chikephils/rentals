@@ -441,7 +441,10 @@
       box-shadow: 0 0 10px 3px rgb(117, 117, 117);
     }
     &:disabled {
-      box-shadow: 0 0 10px 3px rgb(117, 117, 117);
+      background-color: #e87c7c;
+      color: #7e7777;
+      cursor: not-allowed;
+      box-shadow: none;
     }
   }
 }
