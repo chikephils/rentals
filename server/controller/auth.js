@@ -12,7 +12,7 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
     const { firstName, lastName, email, password, profileImage } = req.body;
 
     if (!profileImage) {
-      return res.status(400).send("No picture uploaded");
+      return res.status(400).json({ message: "No picture uploaded" });
     }
 
     const existingUser = await User.findOne({ email });

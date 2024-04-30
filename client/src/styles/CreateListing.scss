@@ -279,8 +279,8 @@
 
       .photo {
         position: relative;
-        width: 250px;
-        height: 150px;
+        max-width: 300px;
+        max-height: 250px;
         cursor: move;
         margin: 10px;
 

@@ -6,6 +6,9 @@ const upload = multer();
 
 router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   try {
+    if (!req.body.listingPhotos) {
+      return res.status(400).json({ message: "No picture uploaded" });
+    }
     let images = [];
 
     if (typeof req.body.listingPhotos === "string") {
@@ -18,7 +21,7 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
 
     for (let i = 0; i < images.length; i++) {
       const result = await cloudinary.v2.uploader.upload(images[i], {
-        folder: "products",
+        folder: "chireva-rentals-listingPhotos",
       });
 
       imagesLinks.push({
