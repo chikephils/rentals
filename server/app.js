@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
+app.get("/test", (req, res) => {
   res.send("Hello world! Your Server is Running...");
 });
 
