@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Listing = require("../models/Listing");
 const multer = require("multer");
 
-const upload = multer({ storage });
+const upload = multer();
 
 router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   try {

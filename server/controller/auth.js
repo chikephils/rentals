@@ -5,17 +5,9 @@ const multer = require("multer");
 const User = require("../models/User");
 const cloudinary = require("cloudinary");
 
-//Multer for file Upload
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
 
-const upload = multer({ storage });
+
+const upload = multer();
 
 // REGISTER USER
 router.post("/register", upload.single("profileImage"), async (req, res) => {
