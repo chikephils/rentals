@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const User = require("../models/User");
 const cloudinary = require("cloudinary");
-
-
-
 const upload = multer();
 
 // REGISTER USER
@@ -15,7 +12,7 @@ router.post("/register", upload.single("profileImage"), async (req, res) => {
     const { firstName, lastName, email, password, profileImage } = req.body;
 
     if (!profileImage) {
-      return res.status(400).send("No file uploaded");
+      return res.status(400).send("No picture uploaded");
     }
 
     const existingUser = await User.findOne({ email });
@@ -68,7 +65,7 @@ router.post("/login", async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Wrong Password" });
+      return res.status(400).json({ message: "Invalid Password" });
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);

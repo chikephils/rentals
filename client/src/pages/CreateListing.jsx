@@ -13,6 +13,7 @@ import { server } from "../server";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Nigeria } from "../Data";
+import { toast } from "react-toastify";
 
 const CreateListing = () => {
   const [photos, setPhotos] = useState([]);
@@ -139,9 +140,14 @@ const CreateListing = () => {
       );
       console.log(response);
       if (response.status >= 200 && response.status < 300) {
+        toast.success(response.data.message);
         navigate("/");
+      } else {
+        toast.error(response.data.message);
+        console.log("Failed to publish");
       }
     } catch (err) {
+      toast.error(err.response.data.message);
       console.log("Publish Listing failed", err.message);
     } finally {
       setLoading(false);

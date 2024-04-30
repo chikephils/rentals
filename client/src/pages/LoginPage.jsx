@@ -5,16 +5,18 @@ import { server } from "../server";
 import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(
         `${server}/auth/login`,
@@ -31,12 +33,17 @@ const LoginPage = () => {
             token: response.data.token,
           })
         );
+        toast.success(response.data.message);
         navigate("/");
       } else {
+        toast.error(response.data.message);
         console.log("failed to login");
       }
     } catch (err) {
+      toast.error(err.response.data.message);
       console.log("Login Failed", err.message);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -54,13 +61,15 @@ const LoginPage = () => {
             required
           />
           <input
-            type="pssword"
+            type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <button type="submit">LOGIN</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Please Wait..." : "LOGIN"}
+          </button>
         </form>
         <Link to="/register"> Don't have an account? Register Here </Link>
       </div>

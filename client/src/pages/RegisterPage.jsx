@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { server } from "../server";
 import axios from "axios";
 import { FiUpload } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -19,11 +20,26 @@ const RegisterPage = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-      [name]: name === "profileImage" ? files[0] : value,
-    });
+
+    // Check if a file is uploaded
+    if (files && files.length > 0) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        // Set the state with the file content (reader.result)
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: name === "profileImage" ? reader.result : value,
+        }));
+      };
+      reader.readAsDataURL(files[0]);
+    } else {
+      // If no file is uploaded, set the state with the input value directly
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
   const [passwordMatch, setPasswordMatch] = useState(true);
@@ -47,12 +63,23 @@ const RegisterPage = () => {
 
       const response = await axios.post(
         `${server}/auth/register`,
-        registerForm
+        registerForm,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+
       if (response.status >= 200 && response.status < 300) {
+        toast.success(response.data.message);
         navigate("/login");
+      } else {
+        toast.error(response.data.message);
+        console.log("failed to Register");
       }
     } catch (err) {
+      toast.error(err.response.data.message);
       console.log("Registration failed", err.message);
     } finally {
       setLoading(false);
@@ -122,7 +149,7 @@ const RegisterPage = () => {
           </label>
           {formData.profileImage && (
             <img
-              src={URL.createObjectURL(formData.profileImage)}
+              src={formData.profileImage}
               alt="profile pics"
               style={{ maxWidth: "80px" }}
             />

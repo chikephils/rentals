@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/ListingCard.scss";
-import { backend_url, server } from "../server";
+import { server } from "../server";
 import {
   ArrowForwardIos,
   ArrowBackIosNew,

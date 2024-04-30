@@ -22,6 +22,8 @@ import { setListings } from "./redux/state";
 import axios from "axios";
 import { server } from "./server";
 import ScrollToTop from "./ScrollToTop";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -83,6 +85,18 @@ function App() {
           />
         </Routes>
       </div>
+      <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
     </>
   );
 }
