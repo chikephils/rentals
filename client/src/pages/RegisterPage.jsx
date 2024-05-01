@@ -5,6 +5,7 @@ import { server } from "../server";
 import axios from "axios";
 import { FiUpload } from "react-icons/fi";
 import { toast } from "react-toastify";
+import { RxAvatar } from "react-icons/rx";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -146,11 +147,15 @@ const RegisterPage = () => {
             <FiUpload size={30} />
             <p>Upload Your Photo</p>
           </label>
-          {formData.profileImage && (
+          {formData.profileImage ? (
             <img
               src={formData.profileImage}
               alt="profile pics"
-              style={{ borderRadius: "50%", maxWidth: "80px" }}
+              style={{ borderRadius: "50%", maxWidth: "70px", maxHeight: "80px" }}
+            />
+          ) : (
+            <RxAvatar
+              style={{ width: "60px", height: "60px", color: "white" }}
             />
           )}
           <button type="submit" disabled={!passwordMatch || loading}>
