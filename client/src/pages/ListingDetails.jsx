@@ -100,10 +100,7 @@ const ListingDetails = () => {
           <hr />
           <div className="profile">
             <img
-              src={`${backend_url}/${listing.creator?.profileImagePath?.replace(
-                "public",
-                ""
-              )}`}
+              src={`${listing.creator?.profileImagePath?.url}`}
               alt="profileImg"
             />
             <h3>

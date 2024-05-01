@@ -34,7 +34,6 @@ const RegisterPage = () => {
       };
       reader.readAsDataURL(files[0]);
     } else {
-      // If no file is uploaded, set the state with the input value directly
       setFormData((prevFormData) => ({
         ...prevFormData,
         [name]: value,
@@ -151,7 +150,7 @@ const RegisterPage = () => {
             <img
               src={formData.profileImage}
               alt="profile pics"
-              style={{ maxWidth: "80px" }}
+              style={{ borderRadius: "50%", maxWidth: "80px" }}
             />
           )}
           <button type="submit" disabled={!passwordMatch || loading}>

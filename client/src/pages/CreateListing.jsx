@@ -25,6 +25,7 @@ const CreateListing = () => {
   const creatorId = useSelector((state) => state.user._id);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const [formLocation, setFormLocation] = useState({
     streetAddress: "",
@@ -92,6 +93,7 @@ const CreateListing = () => {
 
   const handlePost = async (e) => {
     e.preventDefault();
+    setShowLoader(true);
     setLoading(true);
 
     const newPhotos = [];
@@ -147,13 +149,15 @@ const CreateListing = () => {
       console.log("Publish Listing failed", err.message);
     } finally {
       setLoading(false);
+      setShowLoader(false);
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className="create-listing">
+      <div className={`create-listing ${showLoader ? "loader-visible" : ""}`}>
+        <>{}</>
         <h1>Publish your Property</h1>
         <form onSubmit={handlePost}>
           <div className="create-listing_step1">
