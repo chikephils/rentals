@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   token: null,
-  listings: [],
 };
 
 export const userSlice = createSlice({
@@ -17,9 +16,6 @@ export const userSlice = createSlice({
     setLogout: (state) => {
       state.user = null;
       state.token = null;
-    },
-    setListings: (state, action) => {
-      state.listings = action.payload.listings;
     },
     setTripLists: (state, action) => {
       state.user.tripList = action.payload;
@@ -39,7 +35,6 @@ export const userSlice = createSlice({
 export const {
   setLogin,
   setLogout,
-  setListings,
   setTripLists,
   setWishLists,
   setPropertyLists,

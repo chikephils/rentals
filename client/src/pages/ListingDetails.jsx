@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/ListingDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { backend_url, server } from "../server";
+import { server } from "../server";
 import { facilities } from "../Data";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
@@ -16,7 +16,7 @@ const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
-  const customerId = useSelector((state) => state?.user?._id);
+  const customerId = useSelector((state) => state?.user?.user._id);
   const navigate = useNavigate();
 
   const getListingDetails = async () => {

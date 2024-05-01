@@ -5,14 +5,14 @@ import ListingCard from "../components/ListingCard";
 import Navbar from "../components/Navbar";
 
 const WishList = () => {
-  const wishlist = useSelector((state) => state.user?.wishList);
+  const wishlist = useSelector((state) => state.user?.user?.wishList);
 
   return (
     <>
       <Navbar />
       <h1 className="title-list">Your Wish List</h1>
       <div className="list">
-        {wishlist.length === 0 ? (
+        {wishlist?.length === 0 ? (
           <p className="title-list">No Listings Found</p>
         ) : (
           wishlist?.map(

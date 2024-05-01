@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -10,7 +10,13 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import state from "./state";
+import userReducer from "./user";
+import listingRedeucer from "./listing";
+
+const rootReducer = combineReducers({
+  user: userReducer,
+  listings: listingRedeucer,
+});
 
 const persistConfig = {
   key: "root",
@@ -18,12 +24,13 @@ const persistConfig = {
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, state);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+      immutableCheck: false,
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },

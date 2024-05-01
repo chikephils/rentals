@@ -11,7 +11,7 @@ const CategoryPage = () => {
   const [filteredList, setFilteredList] = useState();
   const { category } = useParams();
 
-  const listings = useSelector((state) => state.listings);
+  const listings = useSelector((state) => state.listings?.listings);
 
   useEffect(() => {
     const filteredListings = listings.filter(
@@ -29,12 +29,12 @@ const CategoryPage = () => {
       <div className="list">
         {loading && <Loader />}
 
-        {!loading && listings.length === 0 && (
+        {!loading && listings?.length === 0 && (
           <p className="title-list">No Listings Found</p>
         )}
 
         {!loading &&
-          filteredList.length > 0 &&
+          filteredList?.length > 0 &&
           filteredList?.map(
             (
               {

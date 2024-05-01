@@ -5,14 +5,16 @@ import Navbar from "../components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { server } from "../server";
-import { setReservationList } from "../redux/state";
+import { setReservationList } from "../redux/user";
 import ListingCard from "../components/ListingCard";
-
+import Footer from "../components/Footer";
 
 const ReservationList = () => {
   const [loading, setLoading] = useState(true);
-  const userId = useSelector((state) => state.user._id);
-  const reservationList = useSelector((state) => state.user.reservationList);
+  const userId = useSelector((state) => state.user?.user._id);
+  const reservationList = useSelector(
+    (state) => state.user.user?.reservationList
+  );
 
   const dispatch = useDispatch();
 
@@ -40,11 +42,11 @@ const ReservationList = () => {
       <div className="list">
         {loading && <Loader />}
 
-        {!loading && reservationList.length === 0 && (
+        {!loading && reservationList?.length === 0 && (
           <p className="title-list">No Listings Found</p>
         )}
         {!loading &&
-          reservationList.length > 0 &&
+          reservationList?.length > 0 &&
           reservationList?.map(
             (
               {

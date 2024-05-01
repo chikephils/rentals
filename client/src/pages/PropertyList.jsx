@@ -5,13 +5,12 @@ import ListingCard from "../components/ListingCard";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { server } from "../server";
-import { setPropertyLists } from "../redux/state";
+import { setPropertyLists } from "../redux/user";
 import Loader from "../components/Loader";
-
 
 const PropertyList = () => {
   const [loading, setLoading] = useState(true);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user?.user);
   const properties = user?.propertyList;
 
   const dispatch = useDispatch();
@@ -39,11 +38,11 @@ const PropertyList = () => {
       <div className="list">
         {loading && <Loader />}
 
-        {!loading && properties.length === 0 && (
+        {!loading && properties?.length === 0 && (
           <p className="title-list">No Listings Found</p>
         )}
         {!loading &&
-          properties.length > 0 &&
+          properties?.length > 0 &&
           properties?.map(
             (
               {

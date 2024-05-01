@@ -7,13 +7,15 @@ import variables from "../styles/variables.scss";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { IoIosImages } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { server } from "../server";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Nigeria } from "../Data";
+import Loader from "../components/Loader";
 import { toast } from "react-toastify";
+import { getAllListings } from "../redux/listing";
 
 const CreateListing = () => {
   const [photos, setPhotos] = useState([]);
@@ -22,10 +24,11 @@ const CreateListing = () => {
   const [bedroomCount, setBedroomCount] = useState(1);
   const [bathroomCount, setBathroomCount] = useState(1);
   const [amenities, setAmenities] = useState([]);
-  const creatorId = useSelector((state) => state.user._id);
+  const creatorId = useSelector((state) => state.user?.user._id);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
+  const dispatch = useDispatch();
 
   const [formLocation, setFormLocation] = useState({
     streetAddress: "",
@@ -78,7 +81,6 @@ const CreateListing = () => {
 
   const handleDragPhoto = (result) => {
     if (!result.destination) return;
-
     const items = Array.from(photos);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -150,14 +152,21 @@ const CreateListing = () => {
     } finally {
       setLoading(false);
       setShowLoader(false);
+      dispatch(getAllListings());
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className={`create-listing ${showLoader ? "loader-visible" : ""}`}>
-        <>{}</>
+      <div className={`create-listing`}>
+        <>
+          {showLoader && (
+            <div className="createLoader">
+              <Loader />
+            </div>
+          )}
+        </>
         <h1>Publish your Property</h1>
         <form onSubmit={handlePost}>
           <div className="create-listing_step1">

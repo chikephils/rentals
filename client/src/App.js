@@ -1,9 +1,5 @@
 import "./App.css";
-import {
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -17,46 +13,29 @@ import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { setListings } from "./redux/state";
-import axios from "axios";
-import { server } from "./server";
+import { useEffect } from "react";
 import ScrollToTop from "./ScrollToTop";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAllListings } from "./redux/listing";
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const isAuth = Boolean(useSelector((state) => state.token));
+  const isAuth = Boolean(useSelector((state) => state.user?.token));
   const dispatch = useDispatch();
 
-  const getFeedListings = async () => {
-    try {
-      const response = await axios.get(`${server}/listing/get-listings`);
-      const data = await response.data;
-      dispatch(setListings(data));
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    getFeedListings();
-  }, []);
+    dispatch(getAllListings());
+  }, [dispatch]);
 
   return (
     <>
       <ScrollToTop />
       <div>
         <Routes>
-          <Route path="/" element={<HomePage loading={loading} />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/all-listing"
-            element={<ListingPage loading={loading} />}
-          />
+          <Route path="/all-listing" element={<ListingPage />} />
           <Route
             path="/create-listing"
             element={isAuth ? <CreateListing /> : <Navigate to="/login" />}
@@ -86,17 +65,17 @@ function App() {
         </Routes>
       </div>
       <ToastContainer
-          position="top-right"
-          autoClose={1000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable
-          pauseOnHover={false}
-          theme="light"
-        />
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 }
