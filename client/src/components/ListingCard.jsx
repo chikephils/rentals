@@ -28,7 +28,7 @@ const ListingCard = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user?.user);
   const wishList = user?.wishList || [];
   const isLiked = wishList?.find((item) => item?._id === listingId);
   const dispatch = useDispatch();
