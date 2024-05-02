@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import "../styles/List.scss";
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import ListingCard from "../components/ListingCard";
 import axios from "axios";
 import { server } from "../server";
-import { setListings } from "../redux/user";
 import Loader from "../components/Loader";
 
 const SearchPage = () => {
