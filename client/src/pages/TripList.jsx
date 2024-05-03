@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { server } from "../server";
-import { setTripLists } from "../redux/state";
+import { setTripLists } from "../redux/user";
 import ListingCard from "../components/ListingCard";
 
 const TripList = () => {
