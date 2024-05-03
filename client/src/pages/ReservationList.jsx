@@ -7,11 +7,11 @@ import axios from "axios";
 import { server } from "../server";
 import { setReservationList } from "../redux/user";
 import ListingCard from "../components/ListingCard";
-import Footer from "../components/Footer";
+
 
 const ReservationList = () => {
   const [loading, setLoading] = useState(true);
-  const userId = useSelector((state) => state.user?.user._id);
+  const userId = useSelector((state) => state.user?.user?._id);
   const reservationList = useSelector(
     (state) => state.user.user?.reservationList
   );

@@ -11,12 +11,14 @@ import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
+import { toast } from "react-toastify";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
-  const customerId = useSelector((state) => state?.user?.user._id);
+  const customerId = useSelector((state) => state?.user?.user?._id);
+  const customer = useSelector((state) => state?.user?.user);
   const navigate = useNavigate();
 
   const getListingDetails = async () => {
@@ -52,6 +54,9 @@ const ListingDetails = () => {
   const dayCount = Math.round(end - start) / (1000 * 60 * 60 * 24);
 
   const handleSubmit = async () => {
+    if (!customer) {
+      toast.info("Please Login to continue");
+    }
     try {
       const bookingForm = {
         customerId,
