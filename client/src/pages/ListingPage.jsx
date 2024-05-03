@@ -8,8 +8,7 @@ import Filter from "../components/Filter";
 
 const ListingPage = () => {
   const [open, setisOpen] = useState(false);
-
-  const listings = useSelector((state) => state?.listings);
+  const listings = useSelector((state) => state?.listings?.listings);
   const [filteredListings, setFilteredListings] = useState(listings);
 
   const handleFilterSubmit = (filterParams) => {

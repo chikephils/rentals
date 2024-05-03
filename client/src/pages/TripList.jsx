@@ -10,8 +10,8 @@ import ListingCard from "../components/ListingCard";
 
 const TripList = () => {
   const [loading, setLoading] = useState(true);
-  const tripList = useSelector((state) => state.user.tripList);
-  const userId = useSelector((state) => state.user._id);
+  const tripList = useSelector((state) => state.user?.user?.tripList);
+  const userId = useSelector((state) => state.user?.user?._id);
   const dispatch = useDispatch();
 
   const getTripList = async () => {
@@ -38,11 +38,11 @@ const TripList = () => {
       <div className="list">
         {loading && <Loader />}
 
-        {!loading && tripList.length === 0 && (
+        {!loading && tripList?.length === 0 && (
           <p className="title-list">No Listings Found</p>
         )}
         {!loading &&
-          tripList.length > 0 &&
+          tripList?.length > 0 &&
           tripList?.map(
             (
               {

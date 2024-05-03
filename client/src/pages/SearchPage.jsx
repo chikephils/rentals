@@ -35,7 +35,7 @@ const SearchPage = () => {
       <div className="list">
         {loading && <Loader />}
 
-        {!loading && searchList.length === 0 && (
+        {!loading && searchList?.length === 0 && (
           <p className="title-list">No Listings Found</p>
         )}
 
