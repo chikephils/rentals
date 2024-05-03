@@ -9,7 +9,7 @@ import { setLogout } from "../redux/user";
 
 const Navbar = () => {
   const [dropDownMenu, setDropDownMenu] = useState(false);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user?.user);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
