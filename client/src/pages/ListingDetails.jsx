@@ -115,19 +115,20 @@ const ListingDetails = () => {
             <div>
               <h2>What this place offers?</h2>
               <div className="amenities">
-                {listing.amenities[0].split(",").map((item, index) => (
+                {listing.amenities.map((amenity, index) => (
                   <div className="facility" key={index}>
                     <div className="facility_icon">
                       {
-                        facilities.find((facility) => facility.name === item)
+                        facilities.find((facility) => facility.name === amenity)
                           ?.icon
                       }
                     </div>
-                    <p>{item}</p>
+                    <p>{amenity}</p>
                   </div>
                 ))}
               </div>
             </div>
+
             <>
               {listing.type === "Serviced Apartment" && (
                 <div>

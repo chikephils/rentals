@@ -46,7 +46,7 @@ router.post("/create", async (req, res) => {
 
 router.get("/get-listings", async (req, res) => {
   try {
-    const listings = await Listing.find({});
+    const listings = await Listing.find().populate("creator");
     res.status(201).json({
       success: true,
       listings,
