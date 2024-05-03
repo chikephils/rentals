@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setWishLists } from "../redux/state";
+import { setWishLists } from "../redux/user";
 
 const ListingCard = ({
   listingId,
