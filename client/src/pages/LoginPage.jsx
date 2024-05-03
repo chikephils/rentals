@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Login.scss";
 import axios from "axios";
 import { server } from "../server";
-import { setLogin } from "../redux/state";
+import { setLogin } from "../redux/user";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
