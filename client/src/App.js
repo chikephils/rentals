@@ -20,8 +20,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { getAllListings } from "./redux/listing";
 
 function App() {
-  const isAuth = Boolean(useSelector((state) => state.user?.token));
   const dispatch = useDispatch();
+  const isAuth = Boolean(useSelector((state) => state.user?.token));
 
   useEffect(() => {
     dispatch(getAllListings());
@@ -63,19 +63,19 @@ function App() {
             element={isAuth ? <ReservationList /> : <Navigate to="/login" />}
           />
         </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={1000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover={false}
-        theme="light"
-      />
     </>
   );
 }
