@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const Listings = ({ loading }) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const listings = useSelector((state) => state?.listings);
+  const listings = useSelector((state) => state?.listings?.listings);
   const [filteredListings, setFilteredListings] = useState([]);
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Listings = ({ loading }) => {
         <Loader />
       ) : (
         <div className="listings">
-          {filteredListings.length === 0 ? (
+          {filteredListings?.length === 0 ? (
             <p className="title-list">No Listings Found</p>
           ) : (
             filteredListings?.map(
