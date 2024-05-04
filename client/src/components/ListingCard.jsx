@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setWishLists } from "../redux/user";
+import numberWithCommas from "../utils";
 
 const ListingCard = ({
   listingId,
@@ -32,6 +33,8 @@ const ListingCard = ({
   const wishList = user?.wishList || [];
   const isLiked = wishList?.find((item) => item?._id === listingId);
   const dispatch = useDispatch();
+  const editedPrice = numberWithCommas(price);
+  const editedTotalPrice = numberWithCommas(totalPrice);
 
   const goToPrevSlide = () => {
     setCurrentIndex(
@@ -101,7 +104,7 @@ const ListingCard = ({
           <p>{type}</p>
           <p>
             {" "}
-            <span>₦</span> {price} per night
+            <span>₦</span> {editedPrice} per night
           </p>
         </>
       ) : (
@@ -112,7 +115,7 @@ const ListingCard = ({
                 {startDate} - {endDate}
               </p>
               <p>
-                <span>₦</span> {totalPrice} total
+                <span>₦</span> {editedTotalPrice} total
               </p>
             </>
           )}
@@ -124,7 +127,7 @@ const ListingCard = ({
           <p>{type}</p>
           <p>
             {" "}
-            <span>₦</span> {price} per annum
+            <span>₦</span> {editedPrice} per annum
           </p>
         </>
       )}
@@ -133,7 +136,7 @@ const ListingCard = ({
           <p>{type}</p>
           <p>
             {" "}
-            <span>₦</span> {price} Outright
+            <span>₦</span> {editedPrice} Outright
           </p>
         </>
       )}

@@ -12,6 +12,7 @@ import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 import { toast } from "react-toastify";
+import numbersWithCommas from "../utils";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -20,6 +21,7 @@ const ListingDetails = () => {
   const customerId = useSelector((state) => state?.user?.user?._id);
   const customer = useSelector((state) => state?.user?.user);
   const navigate = useNavigate();
+  const editedPrice = numbersWithCommas(listing?.price);
 
   const getListingDetails = async () => {
     try {
@@ -45,6 +47,8 @@ const ListingDetails = () => {
     },
   ]);
 
+  console.log(listing);
+
   const handleSelect = (ranges) => {
     setDateRange([ranges.selection]);
   };
@@ -52,6 +56,8 @@ const ListingDetails = () => {
   const start = new Date(dateRange[0].startDate);
   const end = new Date(dateRange[0].endDate);
   const dayCount = Math.round(end - start) / (1000 * 60 * 60 * 24);
+  const editedTotalPrice = listing?.price * dayCount;
+  const bookingTotal = numbersWithCommas(editedTotalPrice);
 
   const handleSubmit = async () => {
     if (!customer) {
@@ -147,15 +153,15 @@ const ListingDetails = () => {
                     />
                     {dayCount > 1 && (
                       <h3>
-                        ₦{listing.price} x {dayCount} nights
+                        ₦{editedPrice} x {dayCount} nights
                       </h3>
                     )}
                     {dayCount === 1 && (
                       <h3>
-                        ₦{listing.price} x {dayCount} night
+                        ₦{editedPrice} x {dayCount} night
                       </h3>
                     )}
-                    <h3>Total price: ₦{listing.price * dayCount}</h3>
+                    <h3>Total price: ₦{bookingTotal}</h3>
                     <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
                     <p>End Date: {dateRange[0].endDate.toDateString()}</p>
                     <button
@@ -171,12 +177,12 @@ const ListingDetails = () => {
 
               {listing.type === "Renting" && (
                 <div>
-                  <h3>Total price: ₦{listing.price} per Annum</h3>
+                  <h3>Total price: ₦{editedPrice} per Annum</h3>
                 </div>
               )}
               {listing.type === "For Sale" && (
                 <div>
-                  <h3>Total price: ₦{listing.price} Outright</h3>
+                  <h3>Total price: ₦{editedPrice} Outright</h3>
                 </div>
               )}
             </>
