@@ -20,7 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getAllListings } from "./redux/listing";
 
 function App() {
-  const isAuth = Boolean(useSelector((state) => state.user?.token));
+  const isAuth = Boolean(useSelector((state) => state.user?.user?.token));
   const dispatch = useDispatch();
 
   useEffect(() => {
