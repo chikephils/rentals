@@ -141,39 +141,41 @@ const ListingDetails = () => {
             </div>
 
             <>
-              {listing.type === "Serviced Apartment" && (
-                <div>
-                  <h2>How long are you Renting?</h2>
-                  <div className="date-range-calendar">
-                    <DateRange
-                      ranges={dateRange}
-                      onChange={handleSelect}
-                      className="picker"
-                      direction="horizontal"
-                    />
-                    {dayCount > 1 && (
-                      <h3>
-                        ₦{editedPrice} x {dayCount} nights
-                      </h3>
-                    )}
-                    {dayCount === 1 && (
-                      <h3>
-                        ₦{editedPrice} x {dayCount} night
-                      </h3>
-                    )}
-                    <h3>Total price: ₦{bookingTotal}</h3>
-                    <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
-                    <p>End Date: {dateRange[0].endDate.toDateString()}</p>
-                    <button
-                      className="button"
-                      type="submit"
-                      onClick={handleSubmit}
-                    >
-                      BOOKING
-                    </button>
+              {listing.type === "Serviced Apartment" &&
+                listing?.creator._id !== customerId &&
+                customer && (
+                  <div>
+                    <h2>How long are you Renting?</h2>
+                    <div className="date-range-calendar">
+                      <DateRange
+                        ranges={dateRange}
+                        onChange={handleSelect}
+                        className="picker"
+                        direction="horizontal"
+                      />
+                      {dayCount > 1 && (
+                        <h3>
+                          ₦{editedPrice} x {dayCount} nights
+                        </h3>
+                      )}
+                      {dayCount === 1 && (
+                        <h3>
+                          ₦{editedPrice} x {dayCount} night
+                        </h3>
+                      )}
+                      <h3>Total price: ₦{bookingTotal}</h3>
+                      <p>Start Date: {dateRange[0].startDate.toDateString()}</p>
+                      <p>End Date: {dateRange[0].endDate.toDateString()}</p>
+                      <button
+                        className="button"
+                        type="submit"
+                        onClick={handleSubmit}
+                      >
+                        BOOKING
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {listing.type === "Renting" && (
                 <div>
