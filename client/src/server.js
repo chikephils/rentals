@@ -1,3 +1,3 @@
-export const server = "https://rentals-api.vercel.app/api/v2";
+export const server = "https://rentalsapi.onrender.com/api/v2";
 
-export const backend_url = "https://rentals-api.vercel.app";
+export const backend_url = "https://rentalsapi.onrender.com/";
