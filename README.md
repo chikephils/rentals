@@ -55,7 +55,7 @@ Used Cloudinary to save and deliver property listing images
 
 ## Server Dependencies
 
-•	bcrypt.js
+•	bcryptjs
 
 •	Cloudinary
 
