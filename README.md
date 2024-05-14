@@ -3,7 +3,9 @@
 LIVE-LINK ** : chireva-rentals.vercel.app
 
 This is a MERN-Stack application for home rentals, buy, and short-let stay.
+
 The API for this website, was built from scratch using Node JS.
+
 Used Cloudinary to save and deliver property listing images
 
 ## Features
