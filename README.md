@@ -21,8 +21,6 @@ Used Cloudinary to save and deliver property listing images
 
 •	React
 
-•	Module SCSS
-
 •	Node JS
 
 •	Express
@@ -66,7 +64,6 @@ Used Cloudinary to save and deliver property listing images
 •	jsonwebtoken
 
 •	mongoose
-
 
 •	helmet
 
