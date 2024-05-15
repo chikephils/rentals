@@ -112,4 +112,20 @@
       text-align: center;
     }
   }
+  &_loginInfo {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+
+    p {
+      color: white;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
 }

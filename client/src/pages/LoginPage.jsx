@@ -73,6 +73,10 @@ const LoginPage = () => {
         </form>
         <Link to="/register"> Don't have an account? Register Here </Link>
       </div>
+      <div className="login_loginInfo">
+        <p>Email: chikephils@gmail.com</p>
+        <p>Password: bellamy</p>
+      </div>
     </div>
   );
 };
